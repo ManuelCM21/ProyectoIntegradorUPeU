@@ -1,3 +1,6 @@
 *.class
 *.replit
+**/*
+!**/*.java
+!**/
 target
