@@ -1,6 +1,7 @@
 *.class
 *.replit
-**/*
+#*.jar
+**.vscode
+**/target/*
+#**/*
 !**/*.java
-!**/
-target
