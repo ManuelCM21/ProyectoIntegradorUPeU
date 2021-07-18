@@ -53,10 +53,11 @@ public class App {
     }
 
     public static void validarAcceso() {
+        UtilsX ut = new UtilsX();
+        ut.clearConsole();
         AnsiConsole.systemUninstall();
         LeerTeclado lt = new LeerTeclado();
         Console cons = System.console();
-        UtilsX ut = new UtilsX();
         ut.pintarLine('H', 48);
         System.out.println(ansi().render("@|green ||@\t\t\t@|yellow INGRESE SU USUARIO "+
         "Y CLAVE PARA ACCEDER AL SISTEMA|@\t\t\t@|green ||@"));
