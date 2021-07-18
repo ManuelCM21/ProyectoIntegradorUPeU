@@ -72,7 +72,7 @@ public class App {
             menuMain();
         }else {
             ut.clearConsole();
-            System.out.println("Intente nuevamente...");
+            System.out.println("Intente nuevamente....");
             validarAcceso();
         }
     }
