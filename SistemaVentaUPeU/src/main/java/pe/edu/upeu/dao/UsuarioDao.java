@@ -30,7 +30,7 @@ public class UsuarioDao extends AppCrud{
         if (validarExistUser(user)) {
             usTo.setUsuario(user);
             usTo.setIdUsuario(generarId(lea, 0, "U", 1));
-            usTo.setPerfil(lt.leer("", "Ingrese el Perfil del Usuario (ADMIN, VENDEDOR): ").toUpperCase());
+            usTo.setPerfil(lt.leer("", "Ingrese el Perfil del Usuario (ADMIN ; VENDEDOR): ").toUpperCase());
             Console cons = System.console();
             System.out.print("Ingrese Clave: ");
             char[] clave = cons.readPassword();
