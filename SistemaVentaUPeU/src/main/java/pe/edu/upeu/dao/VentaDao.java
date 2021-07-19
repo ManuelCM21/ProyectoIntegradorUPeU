@@ -34,7 +34,7 @@ public class VentaDao extends AppCrud {
             VentaDetalleTO vt = registroDetalleVenta(vent);
             preciototal = preciototal+vt.getPrecioTotal();
             System.out.println("");
-            venta = lt.leer("", "Desea algo mas (SI = S / NO = N)? : ").toUpperCase();
+            venta = lt.leer("", "¿Desea algo mas (SI = S / NO = N)? : ").toUpperCase();
         }while (venta.charAt(0)=='S' || venta.charAt(0)=='S'+'I');
         vent.setPrecioTotal(preciototal);
         vent.setNetoTotal((Math.round((vent.getPrecioTotal()/1.18)*100.0)/100.0));
