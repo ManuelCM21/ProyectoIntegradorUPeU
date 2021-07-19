@@ -44,7 +44,7 @@ public class App {
                 System.out.println("¡La opcion que eligio no existe!"); break;
             }
             if(opcion!=0){
-            System.out.println("\n¿Desea seguir probando?");
+            System.out.println("\n¿Desea seguir probando?...");
             opcion=lt.leer(0, mensaje);}
         }while(opcion!=0); 
         if (opcion==0) {
