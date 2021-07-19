@@ -51,6 +51,16 @@ public class UsuarioDao extends AppCrud{
         return false;
     }
 
+    public boolean acceso(String usuario) {
+        lea = new LeerArchivo("Usuario.txt");
+        Object[][] data = buscarContenido(lea, 1, usuario);
+        if (data.length == 1 && data[0][3].equals("ADMIN")) {
+            return true;
+        }
+        return false;
+    }
+
+
     public boolean validarExistUser(String user) {
         lea=new LeerArchivo("Usuario.txt");
        Object[][] data=buscarContenido(lea, 1, user);  

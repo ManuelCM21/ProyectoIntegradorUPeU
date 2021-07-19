@@ -98,7 +98,7 @@ public class VentaDao extends AppCrud {
         Object[][] data = listarContenido(lea);
         for (int i = 0; i < data.length; i++) {
             if (Double.parseDouble(String.valueOf(data[i][6]))>0) {
-                System.out.println(data[i][0]+" = "+data[i][1]+" (Precio: "+data[i][4]+
+                System.out.println(data[i][0]+" = "+data[i][1]+"\t(Precio: "+data[i][4]+
                 ",Stock: "+data[i][6]+");");
             }
         }

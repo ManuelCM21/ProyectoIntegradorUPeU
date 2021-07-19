@@ -13,15 +13,15 @@ import static org.fusesource.jansi.Ansi.*;
 
 public class App {
     
-    public static void menuMain(){
-        String mensaje="Seleccion el algoritmo que desea ejecutar\n"+
-        "\n\t1 = Reportar Categoria"+
+    public static void menuAdmin(){
+        String mensaje="Seleccione el algoritmo que desea ejecutar\n"+
+        "\n\t\t1 = Reportar Categoria"+
         "\t\t\t5 = Registrar Categoria\n"+
-        "\t2 = Reportar Producto"+
+        "\t\t2 = Reportar Producto"+
         "\t\t\t6 = Registrar Producto\n"+
-        "\t3 = Reportar Ventas en un rango"+
+        "\t\t3 = Reportar Ventas en un rango"+
         "\t\t7 = Registrar Usuario\n"+
-        "\t4 = Realizar Venta"+
+        "\t\t4 = Realizar Venta"+
         "\t\t\t0 = Salir del programa : ";
         LeerTeclado lt = new LeerTeclado();
         CategoriaDao dao = new CategoriaDao();
@@ -52,6 +52,38 @@ public class App {
         }    
     }
 
+    public static void menuVendedor(){
+        String mensaje="Seleccione el algoritmo que desea ejecutar\n"+
+        "\n\t1 = Reportar Categoria\n"+
+        "\t2 = Reportar Producto\n"+
+        "\t3 = Reportar Ventas en un rango\n"+
+        "\t4 = Realizar Venta\n"+
+        "\t0 = Salir del programa : ";
+        LeerTeclado lt = new LeerTeclado();
+        CategoriaDao dao = new CategoriaDao();
+        UtilsX ut = new UtilsX();
+        VentaDao venDO = new VentaDao();
+        ProductoDao daoPro = new ProductoDao();
+        int opcion=0;
+        opcion=lt.leer(0, mensaje);
+        do{
+            switch(opcion){
+                case 1: ut.clearConsole();dao.reporteCategoria(); break;
+                case 2: ut.clearConsole();daoPro.reportarProducto(); break;
+                case 3: ut.clearConsole();venDO.reporteVentasRangoFecha();break;
+                case 4: ut.clearConsole();venDO.ventaGeneral();break;
+                default: ut.clearConsole();
+                System.out.println("¡La opcion que eligio no existe!"); break;
+            }
+            if(opcion!=0){
+            System.out.println("\n¿Desea seguir probando?");
+            opcion=lt.leer(0, mensaje);}
+        }while(opcion!=0); 
+        if (opcion==0) {
+            ut.clearConsole();
+        }    
+    }
+
     public static void validarAcceso() {
         UtilsX ut = new UtilsX();
         ut.clearConsole();
@@ -68,17 +100,20 @@ public class App {
         System.out.println("");
         UsuarioDao usuDao = new UsuarioDao();
         if (usuDao.login(usuario, clave)) {
-            ut.clearConsole();
-            menuMain();
+            if (usuDao.acceso(usuario)){
+                menuAdmin();   
+            } else {
+                menuVendedor();
+            }
+            
         }else {
             ut.clearConsole();
-            System.out.println("Intente nuevamente....");
             validarAcceso();
         }
     }
 
     public static void main(String[] args) {
         validarAcceso();
-        //menuMain();
+        //menuAdmin();
     }
 }
