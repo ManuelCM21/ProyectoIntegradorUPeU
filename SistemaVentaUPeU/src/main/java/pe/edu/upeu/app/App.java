@@ -41,7 +41,7 @@ public class App {
                 case 6: ut.clearConsole();daoPro.crearProducto(); break;
                 case 7: ut.clearConsole();daoUso.crearNuevoUsuario();break;
                 default: ut.clearConsole();
-                System.out.println("La opcion que eligio no existe!"); break;
+                System.out.println("¡La opcion que eligio no existe!"); break;
             }
             if(opcion!=0){
             System.out.println("\n¿Desea seguir probando?");
