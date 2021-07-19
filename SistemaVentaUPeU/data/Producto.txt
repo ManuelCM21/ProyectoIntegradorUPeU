@@ -1,0 +1,6 @@
+P1	Platano	unidad	C1	0.2	0.02	30.0
+P2	Manzana	kilo	C1	2.5	0.05	20.0
+P3	Papaya	unidad	C1	1.5	0.08	25.0
+P4	Cebolla	kilo	C2	2.0	0.5	15.0
+P5	Pepino	unidad	C2	1.5	0.02	35.0
+P6	Inca Kola	unidad	C3	2.5	0.05	40.0

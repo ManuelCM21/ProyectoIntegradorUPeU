@@ -78,7 +78,7 @@ public class App {
     }
 
     public static void main(String[] args) {
-        validarAcceso();
-        //menuMain();
+        //validarAcceso();
+        menuMain();
     }
 }

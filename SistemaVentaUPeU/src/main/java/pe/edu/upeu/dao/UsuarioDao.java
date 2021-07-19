@@ -7,6 +7,8 @@ import pe.edu.upeu.modelo.UsuarioTO;
 import pe.edu.upeu.util.LeerArchivo;
 import pe.edu.upeu.util.LeerTeclado;
 import pe.edu.upeu.util.UtilsX;
+import org.fusesource.jansi.AnsiConsole;
+import static org.fusesource.jansi.Ansi.*;
 
 public class UsuarioDao extends AppCrud{
     LeerTeclado lt = new LeerTeclado();
@@ -16,11 +18,14 @@ public class UsuarioDao extends AppCrud{
     UsuarioTO usTo;
 
     public void crearNuevoUsuario() {
+        AnsiConsole.systemUninstall();
         usTo = new UsuarioTO();
         lea = new LeerArchivo("Usuario.txt");
-        ut.pintarLine1('H', 14);
-        System.out.print(" CREANDO UN NUEVO USUARIO");
-        ut.pintarLine('H', 14);
+        ut.pintarLine('H', 32);
+        ut.pintarLine1('V', 0);
+        System.out.print(ansi().render("@|yellow \t\t\tCREANDO NUEVO USUARIO |@\t\t\t"));
+        ut.pintarLine('V', 0);
+        ut.pintarLine('H', 32);
         String user = lt.leer("", "Ingrese un Usuario: ").toUpperCase();
         if (validarExistUser(user)) {
             usTo.setUsuario(user);
