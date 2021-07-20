@@ -21,7 +21,7 @@ public class AppCrud {
     }
 
     public int numColumna(LeerArchivo aq, Object modelo){
-        Field[] fields = (modelo).getClass().getDeclaredFields();
+        Field[] fields =(modelo).getClass().getDeclaredFields();
         int numColum=0;
         for(Field field : fields) {
             numColum++;
