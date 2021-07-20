@@ -74,7 +74,7 @@ public class AppCrud {
 
     public Object[][] editarRegistro(LeerArchivo aq, int numIdColumModelo, String dato, Object modelo){
         Object[][] datosAnt=listarContenido(aq);
-        Field[] fields = (modelo).getClass().getDeclaredFields();
+        Field[] fields =(modelo).getClass().getDeclaredFields();
         List<String> lista2 = new ArrayList<String>();
         int numFilasX=-1;  
         try {
