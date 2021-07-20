@@ -69,7 +69,7 @@ public class App {
         UtilsX ut = new UtilsX();
         VentaDao venDO = new VentaDao();
         ProductoDao daoPro = new ProductoDao();
-        int opcion=0;
+        int opcion = 0;
         opcion=lt.leer(0, mensaje);
         do{
             switch(opcion){
