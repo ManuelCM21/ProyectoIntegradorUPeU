@@ -52,7 +52,7 @@ public class VentaDao extends AppCrud {
     }
 
     public VentaTO registroVenta() {
-        lea = new LeerArchivo("Venta.txt");
+        lea =new LeerArchivo("Venta.txt");
         venTO = new VentaTO();
         venTO.setIdVenta(generarId(lea, 0, "V", 1));
         ut.pintarLine('H', 40);
