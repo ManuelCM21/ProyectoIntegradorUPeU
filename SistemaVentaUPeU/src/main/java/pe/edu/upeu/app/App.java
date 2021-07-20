@@ -16,12 +16,14 @@ public class App {
     public static void menuAdmin(){
         String mensaje="Seleccione el algoritmo que desea ejecutar\n"+
         "\n\t\t1 = Reportar Categoria"+
-        "\t\t\t5 = Registrar Categoria\n"+
+        "\t\t\t6 = Registrar Categoria\n"+
         "\t\t2 = Reportar Producto"+
-        "\t\t\t6 = Registrar Producto\n"+
+        "\t\t\t7 = Registrar Producto\n"+
         "\t\t3 = Reportar Ventas en un rango"+
-        "\t\t7 = Registrar Usuario\n"+
+        "\t\t8 = Registrar Usuario\n"+
         "\t\t4 = Realizar Venta"+
+        "\t\t\t9 = Modificar Producto\n"+
+        "\t\t5 = Cerrar Sesión"+
         "\t\t\t0 = Salir del programa : ";
         LeerTeclado lt = new LeerTeclado();
         CategoriaDao dao = new CategoriaDao();
@@ -37,9 +39,11 @@ public class App {
                 case 2: ut.clearConsole();daoPro.reportarProducto(); break;
                 case 3: ut.clearConsole();venDO.reporteVentasRangoFecha();break;
                 case 4: ut.clearConsole();venDO.ventaGeneral();break;
-                case 5: ut.clearConsole();dao.crearCategoria();break;
-                case 6: ut.clearConsole();daoPro.crearProducto(); break;
-                case 7: ut.clearConsole();daoUso.crearNuevoUsuario();break;
+                case 5: ut.clearConsole();validarAcceso();break;
+                case 6: ut.clearConsole();dao.crearCategoria();break;
+                case 7: ut.clearConsole();daoPro.crearProducto(); break;
+                case 8: ut.clearConsole();daoUso.crearNuevoUsuario();break;
+                case 9: ut.clearConsole();venDO.modificarProducto();;break;
                 default: ut.clearConsole();
                 System.out.println("¡La opcion que eligio no existe!"); break;
             }
@@ -58,6 +62,7 @@ public class App {
         "\t2 = Reportar Producto\n"+
         "\t3 = Reportar Ventas en un rango\n"+
         "\t4 = Realizar Venta\n"+
+        "\t5 = Cerrar Sesión\n"+
         "\t0 = Salir del programa : ";
         LeerTeclado lt = new LeerTeclado();
         CategoriaDao dao = new CategoriaDao();
@@ -72,6 +77,7 @@ public class App {
                 case 2: ut.clearConsole();daoPro.reportarProducto(); break;
                 case 3: ut.clearConsole();venDO.reporteVentasRangoFecha();break;
                 case 4: ut.clearConsole();venDO.ventaGeneral();break;
+                case 5: ut.clearConsole();validarAcceso();break;
                 default: ut.clearConsole();
                 System.out.println("¡La opcion que eligio no existe!"); break;
             }
@@ -95,8 +101,11 @@ public class App {
         "Y CLAVE PARA ACCEDER AL SISTEMA|@\t\t\t@|green ||@"));
         ut.pintarLine('H', 48);
         String usuario = (lt.leer("", "INGRESE SU USUARIO: ")).toUpperCase();
-        System.out.print("INGRESE SU CLAVE: ");
+        System.out.print("INGRESE LA CONTRASEÑA: ");
         char[] clave = cons.readPassword();
+        for (int i = 0; i < clave.length; i++){
+            clave[i] = (char)(clave[i]+'*');
+        }
         System.out.println("");
         UsuarioDao usuDao = new UsuarioDao();
         if (usuDao.login(usuario, clave)) {
@@ -105,7 +114,6 @@ public class App {
             } else {
                 menuVendedor();
             }
-            
         }else {
             ut.clearConsole();
             validarAcceso();

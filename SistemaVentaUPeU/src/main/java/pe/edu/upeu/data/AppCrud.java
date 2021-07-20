@@ -91,7 +91,7 @@ public class AppCrud {
                 if(fieldValue!=null && !fieldValue.equals("") && numIdColumModelo!=primero && !fieldValue.equals(0) && !fieldValue.equals(0.0)){
                     datosAnt[numFilasX][primero]=fieldValue;
                 }                
-                System.out.println(fieldName + ": "+ fieldValue);
+                System.out.println((fieldName).toUpperCase() + ": "+ fieldValue);
                 primero++;
             }            
             }

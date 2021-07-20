@@ -1,7 +1,5 @@
 package pe.edu.upeu.dao;
 
-import java.io.Console;
-
 import pe.edu.upeu.data.AppCrud;
 import pe.edu.upeu.modelo.UsuarioTO;
 import pe.edu.upeu.util.LeerArchivo;
@@ -31,10 +29,13 @@ public class UsuarioDao extends AppCrud{
             usTo.setUsuario(user);
             usTo.setIdUsuario(generarId(lea, 0, "U", 1));
             usTo.setPerfil(lt.leer("", "Ingrese el Perfil del Usuario (ADMIN ; VENDEDOR): ").toUpperCase());
-            Console cons = System.console();
-            System.out.print("Ingrese Clave: ");
-            char[] clave = cons.readPassword();
-            usTo.setClave(String.valueOf(clave));
+            String clave = lt.leer("", "Ingrese su clave: ");
+            char[] pass = clave.toCharArray();
+            for (int i = 0; i < pass.length; i++){
+                pass[i] = (char)(pass[i]+'*');
+            }
+            String encriptado = String.valueOf(pass);
+            usTo.setClave(encriptado);
             agregarContenido(lea, usTo);
         } else {
             System.out.print("Elige otro Usuario: ");
@@ -59,7 +60,6 @@ public class UsuarioDao extends AppCrud{
         }
         return false;
     }
-
 
     public boolean validarExistUser(String user) {
         lea=new LeerArchivo("Usuario.txt");

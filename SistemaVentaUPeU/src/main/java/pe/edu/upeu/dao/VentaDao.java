@@ -40,11 +40,15 @@ public class VentaDao extends AppCrud {
         vent.setNetoTotal((Math.round((vent.getPrecioTotal()/1.18)*100.0)/100.0));
         vent.setIgv((Math.round((vent.getNetoTotal()*0.18)*100.0)/100.0));
         lea = new LeerArchivo("Venta.txt");
-        ut.pintarLine('H',33);
-        System.out.println(ansi().render("@|green ||@ Precio Neto: S/."+vent.getNetoTotal()+
-        " @|green ||@ IGV: S/."+vent.getIgv()+" @|green ||@ Total a pagar: S/."+vent.getPrecioTotal()+" @|green ||@"));
-        ut.pintarLine('H',33);
+        System.out.println("");
         editarRegistro(lea, 0, vent.getIdVenta(), vent);
+        System.out.println("");
+        ut.pintarLine('H',43);
+        ut.pintarTextHeadBody('H', 7, "Precio Neto: S/."+Math.round(vent.getNetoTotal()));
+        ut.pintarTextHeadBody('H', 5, "IGV: S/."+Math.round(vent.getIgv()));
+        ut.pintarTextHeadBody('H', 7, "Total a pagar: S/."+Math.round(vent.getPrecioTotal()));
+        System.out.println("");
+        ut.pintarLine('H',43);
     }
 
     public VentaTO registroVenta() {
@@ -85,23 +89,31 @@ public class VentaDao extends AppCrud {
         vdTO.setPrecioTotal((Math.round((vdTO.getCantidad()*vdTO.getPrecioUnit())*100.0)/100.0));
         lea = new LeerArchivo("VentaDetalle.txt");
         agregarContenido(lea, vdTO);
+        actualizarStockVenta(dataProd, vdTO.getCantidad());
+        ut.clearConsole();
         return vdTO;
     }
 
     public void mostrarProductos() {
         System.out.println("");
-        ut.pintarLine('H', 32);
-        System.out.println(ansi().render("@|green ||@\t\t@|yellow PRODUCTOS DISPONIBLES "+
-        "PARA LA VENTA|@\t\t@|green ||@"));
-        ut.pintarLine('H', 32);
+        ut.pintarLine('H', 27);
+        ut.pintarLine1('V', 0);
+        System.out.print(ansi().render("@|yellow \t  PRODUCTOS DISPONIBLES PARA LA VENTA|@\t      "));
+        ut.pintarLine('V', 0);
+        ut.pintarLine('H', 27);
         lea = new LeerArchivo("Producto.txt");
         Object[][] data = listarContenido(lea);
+        String dataX = "";
         for (int i = 0; i < data.length; i++) {
             if (Double.parseDouble(String.valueOf(data[i][6]))>0) {
-                System.out.println(data[i][0]+" = "+data[i][1]+"\t(Precio: "+data[i][4]+
-                ",Stock: "+data[i][6]+");");
+                dataX += ""+data[i][0]+" = "+data[i][1];
+                dataX += ","+"Precio: "+data[i][4];
+                dataX += ","+"Stock: "+data[i][6];
             }
+            ut.pintarTextHeadBody('B', 4, dataX);
+            dataX = "";
         }
+        ut.pintarLine('H', 27);
         System.out.println("");
     }
 
@@ -142,10 +154,12 @@ public class VentaDao extends AppCrud {
                 }
             }
         ut.clearConsole1();
-        ut.pintarLine1('H',13);
-        System.out.print("  REPORTE DE VENTAS POR FECHA  ");ut.pintarLine('H',13);
-        ut.pintarLine1('H',13);
-        System.out.print(" Entre "+fechaIni+" a "+fechaFin+" ");ut.pintarLine('H',13);
+        ut.pintarLine1('V',0);ut.pintarLine1('H',12);
+        System.out.print("  REPORTE DE VENTAS POR FECHA  ");
+        ut.pintarLine1('H',13);ut.pintarLine('V',0);
+        ut.pintarLine1('V',0);ut.pintarLine1('H',12);
+        System.out.print(" Entre "+fechaIni+" a "+fechaFin+" ");
+        ut.pintarLine1('H',13);ut.pintarLine('V',0);
         ut.pintarLine('H',42);
         ut.pintarTextHeadBody1('H', 3, "ID,DNI Cliente,F.Venta,Imp.Neto,IGV,Pre.Total");
         System.out.println("");
@@ -163,10 +177,50 @@ public class VentaDao extends AppCrud {
         System.out.println("");ut.pintarLine('H',17);
         ut.pintarTextHeadBody('H', 8, "Monto recaudado: S/."+Math.round(precioTotalX));
         System.out.println("");
-        /*System.out.println("| Total Neto de ventas: S/."+Math.round(netoTotalX)+" | IGV a pagar: S/."+
-        Math.round(igvX)+" | Monto recaudado: S/"+Math.round(precioTotalX)+"  |");*/
         ut.pintarLine('H',17);
         } catch (Exception e) {
         }
     }
+
+    public void actualizarStockVenta(Object[][] data, double cant) {
+        lea = new LeerArchivo("Producto.txt");
+        ProductoTO pdt = new ProductoTO();
+        pdt.setIdProducto(data[0][0].toString());
+        pdt.setStock(Double.parseDouble(data[0][6].toString())-cant);
+        editarRegistro(lea, 0, pdt.getIdProducto(), pdt);
+    }
+
+    public void modificarProducto() {
+        lea = new LeerArchivo("Producto.txt");
+        mostrarProductos2();
+        String idProd = lt.leer("","Ingrese el ID del Producto: ").toUpperCase();
+        ProductoTO prodTO = new ProductoTO();
+        prodTO.setStock(lt.leer(0.0, "Ingrese la nueva cantidad: "));
+        editarRegistro(lea, 0, idProd, prodTO);
+    }
+
+    public void mostrarProductos2() {
+        System.out.println("");
+        ut.pintarLine('H', 27);
+        ut.pintarLine1('V', 0);
+        System.out.print(ansi().render("@|yellow \t      MODIFICAR STOCK"+
+        " DE PRODUCTO|@\t      "));
+        ut.pintarLine('V', 0);
+        ut.pintarLine('H', 27);
+        lea = new LeerArchivo("Producto.txt");
+        Object[][] data = listarContenido(lea);
+        String dataX="";
+        for (int i = 0; i < data.length; i++) {
+            if (Double.parseDouble(String.valueOf(data[i][6]))>0) {
+                dataX += ""+data[i][0]+" = "+data[i][1];
+                dataX += ","+"Precio: "+data[i][4];
+                dataX += ","+"Stock: "+data[i][6];
+            }
+            ut.pintarTextHeadBody('B', 4, dataX);
+            dataX = "";
+        }
+        ut.pintarLine('H', 27);
+        System.out.println("");
+    }
+
 }

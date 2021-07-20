@@ -34,13 +34,13 @@ public class CategoriaDao extends AppCrud {
         Object[][] data = listarContenido(lar);
         String dataX="";
         ut.pintarLine('H', 14);
-        ut.pintarTextHeadBody1('H', 3, "ID,NOMBRE");
+        ut.pintarTextHeadBody1('H', 3, "    ID,NOMBRE");
         System.out.println("");
         ut.pintarLine('H', 14);
         for (int i = 0; i < data.length; i++) {
             for (int j = 0; j < data[0].length; j++) {
                 if (j==0) {
-                    dataX +=""+data[i][j];
+                    dataX +="    "+data[i][j];
                 }else {
                     dataX +=","+data[i][j];
                 }
