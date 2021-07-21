@@ -185,7 +185,7 @@ public class VentaDao extends AppCrud {
     }
 
     public void actualizarStockVenta(Object[][] data, double cant) {
-        lea = new LeerArchivo("Producto.txt");
+        lea= new LeerArchivo("Producto.txt");
         ProductoTO pdt = new ProductoTO();
         pdt.setIdProducto(data[0][0].toString());
         pdt.setStock(Double.parseDouble(data[0][6].toString())-cant);
