@@ -17,7 +17,7 @@ public class UsuarioDao extends AppCrud{
 
     public void crearNuevoUsuario() {
         AnsiConsole.systemUninstall();
-        usTo =new UsuarioTO();
+        usTo = new UsuarioTO();
         lea = new LeerArchivo("Usuario.txt");
         System.out.println("");
         ut.pintarLine('H', 32);
