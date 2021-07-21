@@ -33,7 +33,7 @@ public class CategoriaDao extends AppCrud {
         ut.pintarLine('H',14);
         System.out.println(ansi().render("@|green |---|@ REPORTE DE CATEGORIA @|green --||@"));
         lar = new LeerArchivo("Categoria.txt");
-        Object[][] data =listarContenido(lar);
+        Object[][] data = listarContenido(lar);
         String dataX="";
         ut.pintarLine('H', 14);
         ut.pintarTextHeadBody1('H', 3, "    ID,NOMBRE");
