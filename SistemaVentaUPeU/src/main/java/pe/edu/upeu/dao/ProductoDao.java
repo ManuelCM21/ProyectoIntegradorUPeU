@@ -20,6 +20,7 @@ public class ProductoDao extends AppCrud{
     public void crearProducto() {
         prodTO = new ProductoTO();
         AnsiConsole.systemUninstall();
+        System.out.println("");
         ut.pintarLine('H', 28);
         System.out.print(ansi().render("@|green ||@"));
         System.out.print(ansi().fg(YELLOW).a("\t\t CREANDO UN NUEVO PRODUCTO \t\t").reset());
@@ -41,6 +42,7 @@ public class ProductoDao extends AppCrud{
 
     public void reportarProducto() {
         AnsiConsole.systemUninstall();
+        System.out.println("");
         ut.pintarLine('H', 49);
         System.out.print(ansi().render("@|green ||@"));
         ut.pintarLine1('H', 19);

@@ -10,6 +10,7 @@ import pe.edu.upeu.util.LeerTeclado;
 import pe.edu.upeu.util.UtilsX;
 import org.fusesource.jansi.AnsiConsole;
 import static org.fusesource.jansi.Ansi.*;
+import static org.fusesource.jansi.Ansi.Color.*;
 
 public class App {
     
@@ -45,19 +46,17 @@ public class App {
                 case 8: ut.clearConsole();daoUso.crearNuevoUsuario();break;
                 case 9: ut.clearConsole();venDO.modificarProducto();;break;
                 default: ut.clearConsole();
-                System.out.println("¡La opcion que eligio no existe!"); break;
+                System.out.println(ansi().fg(RED).a("\n¡La opcion que eligio no existe!").reset()); break;
+                case 0: ut.clearConsole();
             }
             if(opcion!=0){
             System.out.println("\n¿Desea seguir probando?...");
             opcion=lt.leer(0, mensaje);}
         }while(opcion!=0); 
-        if (opcion==0) {
-            ut.clearConsole();
-        }    
     }
 
     public static void menuVendedor(){
-        String mensaje="Seleccione el algoritmo que desea ejecutar\n"+
+        String mensajev="Seleccione el algoritmo que desea ejecutar\n"+
         "\n\t1 = Reportar Categoria\n"+
         "\t2 = Reportar Producto\n"+
         "\t3 = Reportar Ventas en un rango\n"+
@@ -70,7 +69,7 @@ public class App {
         VentaDao venDO = new VentaDao();
         ProductoDao daoPro = new ProductoDao();
         int opcion = 0;
-        opcion=lt.leer(0, mensaje);
+        opcion=lt.leer(0, mensajev);
         do{
             switch(opcion){
                 case 1: ut.clearConsole();dao.reporteCategoria(); break;
@@ -79,15 +78,13 @@ public class App {
                 case 4: ut.clearConsole();venDO.ventaGeneral();break;
                 case 5: ut.clearConsole();validarAcceso();break;
                 default: ut.clearConsole();
-                System.out.println("¡La opcion que eligio no existe!"); break;
+                System.out.println(ansi().fg(RED).a("\n¡La opcion que eligio no existe!").reset()); break;
+                case 0: ut.clearConsole();
             }
             if(opcion!=0){
             System.out.println("\n¿Desea seguir probando?");
-            opcion=lt.leer(0, mensaje);}
-        }while(opcion!=0); 
-        if (opcion==0) {
-            ut.clearConsole();
-        }    
+            opcion=lt.leer(0, mensajev);}
+        }while(opcion!=0);
     }
 
     public static void validarAcceso() {
@@ -96,6 +93,7 @@ public class App {
         AnsiConsole.systemUninstall();
         LeerTeclado lt = new LeerTeclado();
         Console cons = System.console();
+        System.out.println("");
         ut.pintarLine('H', 48);
         System.out.println(ansi().render("@|green ||@\t\t\t@|yellow INGRESE SU USUARIO "+
         "Y CLAVE PARA ACCEDER AL SISTEMA|@\t\t\t@|green ||@"));

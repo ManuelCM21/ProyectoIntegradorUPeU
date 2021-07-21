@@ -16,6 +16,7 @@ public class CategoriaDao extends AppCrud {
 
     public Object [][] crearCategoria() {
         catTO = new CategoriaTO();
+        System.out.println("");
         ut.pintarLine('H', 36);
         ut.pintarLine1('V', 0);
         System.out.print(ansi().render("@|yellow \t\t\t REGISTRO DE NUEVA CATEGORIA |@\t\t\t"));
@@ -28,6 +29,7 @@ public class CategoriaDao extends AppCrud {
 
     public void reporteCategoria() {
         AnsiConsole.systemUninstall();
+        System.out.println("");
         ut.pintarLine('H',14);
         System.out.println(ansi().render("@|green |---|@ REPORTE DE CATEGORIA @|green --||@"));
         lar = new LeerArchivo("Categoria.txt");

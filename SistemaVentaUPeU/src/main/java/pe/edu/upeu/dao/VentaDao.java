@@ -33,7 +33,7 @@ public class VentaDao extends AppCrud {
             ut.clearConsole();
             VentaDetalleTO vt = registroDetalleVenta(vent);
             preciototal = preciototal+vt.getPrecioTotal();
-            System.out.println("");
+            mostrarProductos();
             venta = lt.leer("", "¿Desea algo mas (SI = S / NO = N)? : ").toUpperCase();
         }while (venta.charAt(0)=='S' || venta.charAt(0)=='S'+'I');
         vent.setPrecioTotal(preciototal);
@@ -44,9 +44,9 @@ public class VentaDao extends AppCrud {
         editarRegistro(lea, 0, vent.getIdVenta(), vent);
         System.out.println("");
         ut.pintarLine('H',43);
-        ut.pintarTextHeadBody('H', 7, "Precio Neto: S/."+Math.round(vent.getNetoTotal()));
-        ut.pintarTextHeadBody('H', 5, "IGV: S/."+Math.round(vent.getIgv()));
-        ut.pintarTextHeadBody('H', 7, "Total a pagar: S/."+Math.round(vent.getPrecioTotal()));
+        ut.pintarTextHeadBody('H', 9, (ansi().render("@|yellow Precio Neto:|@ S/.").toString())+vent.getNetoTotal());
+        ut.pintarTextHeadBody('H', 7, (ansi().render("@|yellow IGV:|@ S/.").toString())+vent.getIgv());
+        ut.pintarTextHeadBody('H', 9, (ansi().render("@|yellow Total a pagar:|@ S/.").toString())+vent.getPrecioTotal());
         System.out.println("");
         ut.pintarLine('H',43);
     }
@@ -55,6 +55,7 @@ public class VentaDao extends AppCrud {
         lea =new LeerArchivo("Venta.txt");
         venTO = new VentaTO();
         venTO.setIdVenta(generarId(lea, 0, "V", 1));
+        System.out.println("");
         ut.pintarLine('H', 40);
         System.out.println(ansi().render("@|green ||@\t\t@|yellow INGRESE LOS DATOS CORRESPONDIENTES "+
         "PARA LA VENTA|@\t\t@|green ||@"));
@@ -118,6 +119,7 @@ public class VentaDao extends AppCrud {
     }
 
     public void reporteVentasRangoFecha(){
+        System.out.println("");
         ut.pintarLine('H', 36);
         System.out.println(ansi().render("@|green ||@\t\t\t@|yellow REPORTE DE VENTAS POR FECHA|@ "+
         "\t\t\t@|green ||@"));
@@ -171,11 +173,11 @@ public class VentaDao extends AppCrud {
         ut.pintarLine('H',42);
         System.out.println("");
         ut.pintarLine('H',17);
-        ut.pintarTextHeadBody('H', 8, "Total Neto de ventas: S/."+Math.round(netoTotalX));
+        ut.pintarTextHeadBody('H', 10, (ansi().render("@|yellow Total Neto de ventas:|@ S/.").toString())+(Math.round(netoTotalX)));
         System.out.println("");ut.pintarLine('H',17);
-        ut.pintarTextHeadBody('H', 8, "IGV a pagar: S/."+Math.round(igvX));
+        ut.pintarTextHeadBody('H', 10, (ansi().render("@|yellow IGV a pagar:|@ S/.").toString())+Math.round(igvX));
         System.out.println("");ut.pintarLine('H',17);
-        ut.pintarTextHeadBody('H', 8, "Monto recaudado: S/."+Math.round(precioTotalX));
+        ut.pintarTextHeadBody('H', 10, (ansi().render("@|yellow Monto recaudado:|@ S/.").toString())+Math.round(precioTotalX));
         System.out.println("");
         ut.pintarLine('H',17);
         } catch (Exception e) {
@@ -197,6 +199,8 @@ public class VentaDao extends AppCrud {
         ProductoTO prodTO = new ProductoTO();
         prodTO.setStock(lt.leer(0.0, "Ingrese la nueva cantidad: "));
         editarRegistro(lea, 0, idProd, prodTO);
+        ut.clearConsole();
+        mostrarProductos2();
     }
 
     public void mostrarProductos2() {

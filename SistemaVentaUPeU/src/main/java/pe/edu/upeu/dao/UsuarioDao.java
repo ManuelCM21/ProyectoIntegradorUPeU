@@ -19,6 +19,7 @@ public class UsuarioDao extends AppCrud{
         AnsiConsole.systemUninstall();
         usTo =new UsuarioTO();
         lea = new LeerArchivo("Usuario.txt");
+        System.out.println("");
         ut.pintarLine('H', 32);
         ut.pintarLine1('V', 0);
         System.out.print(ansi().render("@|yellow \t\t\tCREANDO NUEVO USUARIO |@\t\t\t"));
