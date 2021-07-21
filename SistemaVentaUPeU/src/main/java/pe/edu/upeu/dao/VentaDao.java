@@ -197,10 +197,19 @@ public class VentaDao extends AppCrud {
         mostrarProductos2();
         String idProd = lt.leer("","Ingrese el ID del Producto: ").toUpperCase();
         ProductoTO prodTO = new ProductoTO();
-        prodTO.setStock(lt.leer(0.0, "Ingrese la nueva cantidad: "));
-        editarRegistro(lea, 0, idProd, prodTO);
+        Object[][] proT = buscarContenido(lea, 0, idProd);
+        prodTO.setStock(lt.leer(0.0, "Ingrese la cantidad: "));
+        sumarStock(proT, prodTO.getStock());
         ut.clearConsole();
         mostrarProductos2();
+    }
+
+    public void sumarStock(Object[][] data, double cant) {
+        lea = new LeerArchivo("Producto.txt");
+        ProductoTO pdt = new ProductoTO();
+        pdt.setIdProducto(data[0][0].toString());
+        pdt.setStock(Double.parseDouble(data[0][6].toString())+cant);
+        editarRegistro(lea, 0, pdt.getIdProducto(), pdt);
     }
 
     public void mostrarProductos2() {

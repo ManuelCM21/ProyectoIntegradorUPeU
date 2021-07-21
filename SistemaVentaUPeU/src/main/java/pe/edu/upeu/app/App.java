@@ -47,7 +47,6 @@ public class App {
                 case 9: ut.clearConsole();venDO.modificarProducto();;break;
                 default: ut.clearConsole();
                 System.out.println(ansi().fg(RED).a("\n¡La opcion que eligio no existe!").reset()); break;
-                case 0: ut.clearConsole();
             }
             if(opcion!=0){
             System.out.println("\n¿Desea seguir probando?...");
@@ -79,7 +78,6 @@ public class App {
                 case 5: ut.clearConsole();validarAcceso();break;
                 default: ut.clearConsole();
                 System.out.println(ansi().fg(RED).a("\n¡La opcion que eligio no existe!").reset()); break;
-                case 0: ut.clearConsole();
             }
             if(opcion!=0){
             System.out.println("\n¿Desea seguir probando?");
