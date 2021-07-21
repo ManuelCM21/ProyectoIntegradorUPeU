@@ -14,7 +14,7 @@ public class ProductoDao extends AppCrud{
     LeerArchivo lea;
     ProductoTO prodTO;
     CategoriaTO catTO;
-    LeerTeclado lt = new LeerTeclado();
+    LeerTeclado lt= new LeerTeclado();
     UtilsX ut = new UtilsX();
 
     public void crearProducto() {
