@@ -69,7 +69,7 @@ public class App {
         VentaDao venDO = new VentaDao();
         ProductoDao daoPro = new ProductoDao();
         int opcion = 0;
-        opcion=lt.leer(0, mensajev);
+        opcion = lt.leer(0, mensajev);
         do{
             switch(opcion){
                 case 1: ut.clearConsole();dao.reporteCategoria(); break;
