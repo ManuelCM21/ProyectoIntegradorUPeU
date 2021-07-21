@@ -21,8 +21,8 @@ public class VentaDao extends AppCrud {
     LeerTeclado lt = new LeerTeclado();
     UtilsX ut = new UtilsX();
 
-    SimpleDateFormat formato=new SimpleDateFormat("dd-MM-yyyy  HH:mm:ss");
-    SimpleDateFormat formatoFecha=new SimpleDateFormat("dd-MM-yyyy");
+    SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy  HH:mm:ss");
+    SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-yyyy");
 
     public void ventaGeneral() {
         AnsiConsole.systemUninstall();
