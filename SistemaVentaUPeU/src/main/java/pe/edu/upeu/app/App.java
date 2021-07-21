@@ -55,7 +55,7 @@ public class App {
     }
 
     public static void menuVendedor(){
-        String mensajev="Seleccione el algoritmo que desea ejecutar\n"+
+        String mensajev ="Seleccione el algoritmo que desea ejecutar\n"+
         "\n\t1 = Reportar Categoria\n"+
         "\t2 = Reportar Producto\n"+
         "\t3 = Reportar Ventas en un rango\n"+
