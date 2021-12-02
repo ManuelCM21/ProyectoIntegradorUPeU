@@ -1,2 +1,2 @@
 # ProyectoIntegradorUPeU
-Proyecto Integrador UpeU Ciclo 1 - Fundamentos de Programación
+Fundamentos de Programación - Proyecto Integrador 2021-1  
